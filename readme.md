@@ -1,6 +1,8 @@
 # Singly Linked List
 
-Covered with unit tests
+Introduction to Singly Linked List: https://www.geeksforgeeks.org/data-structures/linked-list/singly-linked-list/
+
+Singly Linked List with unit tests coverage
 
 Given the following classes:
 
@@ -14,10 +16,7 @@ class Node {
 
 class LinkedList {
   constructor(initValue) {
-    this.head = {
-      value: initValue,
-      next: null,
-    };
+    this.head = null;
     this.tail = this.head;
     this.length = 1;
   }
@@ -61,3 +60,5 @@ This function should remove a node at a specified index in a SinglyLinkedList. I
 ### reverse
 
 This function should reverse all of the nodes in a SinglyLinkedList. It should return the reversed SinglyLinkedList.
+
+![All tests passed](https://res.cloudinary.com/adhoonline/image/upload/v1705612662/_Users_stiweb_sites_learning_singly-linked-list_index-portrait_bi9pot.png)
