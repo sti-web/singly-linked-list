@@ -5,14 +5,15 @@ class Node {
   }
 }
 
-class LinkedList {
-  constructor(initValue) {
-    this.head = {
-      value: initValue,
-      next: null,
-    };
+class SinglyLinkedList {
+  constructor() {
+    // this.head = {
+    //   value: initValue,
+    //   next: null,
+    // };
+    this.head = null;
     this.tail = this.head;
-    this.length = 1;
+    this.length = 0;
   }
 
   /**
@@ -21,6 +22,12 @@ class LinkedList {
    * @returns
    */
   push(value) {
+    if (this.length === 0) {
+      this.head = new Node(value);
+      this.tail = this.head;
+      this.length++;
+      return this;
+    }
     const newTail = new Node(value);
     this.tail.next = newTail;
     this.tail = newTail;
@@ -47,17 +54,25 @@ class LinkedList {
    */
   shift() {
     // check
-    if (this.length < 2) {
+    if (this.length < 1) {
       console.warn('Nothing to remove');
-      return this.head;
+      return undefined;
     }
     const currHead = this.head;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = this.head;
+      this.length--;
+      return currHead.value;
+    }
+
     const newHead = this.head.next;
     newHead.next = this.head.next.next;
     this.head = newHead;
     this.length--;
 
-    return currHead;
+    return currHead.value;
   }
 
   /**
@@ -66,14 +81,14 @@ class LinkedList {
    */
   pop() {
     // check
-    if (this.length < 2) {
+    if (this.length < 1) {
       console.warn('Nothing to remove');
-      return this.head;
+      return undefined;
     }
 
     const removed = this.tail;
     this.remove(this.length - 1);
-    return removed;
+    return removed.value;
   }
 
   /**
@@ -88,6 +103,21 @@ class LinkedList {
     leader.next = unwantedNode.next;
     this.length--;
     return this;
+  }
+
+  /**
+   * Update the value of a node at a given index
+   * @param {Number} index
+   * @param {*} value
+   */
+  set(index, value) {
+    // check
+    if (index > this.length) {
+      return false;
+    }
+    const node = this._get(index);
+    node.value = value;
+    return true;
   }
 
   /**
@@ -150,5 +180,19 @@ class LinkedList {
     newNode.next = holdingPoiner;
     this.length++;
     return this;
+  }
+
+  /**
+   * Convert link list to array
+   * @returns {Array}
+   */
+  convertToArray() {
+    const array = [];
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      array.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+    return array;
   }
 }
