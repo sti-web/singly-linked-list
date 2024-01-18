@@ -28,7 +28,7 @@ Implement the following on the `SinglyLinkedList` class
 
 ### push
 
-This function should add a node to the end of the SinglyLinkedList. It should return the list so that the method can be chained.
+This function should add a node at the end of the SinglyLinkedList. It should return the list so that the method can be chained.
 
 ### pop
 
